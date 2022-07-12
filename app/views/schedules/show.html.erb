@@ -1,0 +1,44 @@
+<h3> <%= @schedule.title %> のスケジュール詳細</h3>
+
+<table>
+    <tr>
+        <th class="wid3">名前</th>
+        <td><%= @schedule.title %></td>
+    </tr>
+    <tr>
+        <th class="wid3">開始</th>
+        <td><%= @schedule.start.to_s(:datetime_jp) %></td>
+    </tr>
+    <tr>
+        <th class="wid3">終了</th>
+        <td><%= @schedule.end.to_s(:datetime_jp) %></td>
+    </tr>
+    <tr>
+        <th class="wid3">終日</th>
+        <td><%= @result %></td>
+    </tr>
+    <tr>
+        <th class="wid3">内容</th>
+        <td><%= @schedule.contents %></td>
+    </tr>
+</table>
+
+<div>
+    <p>前回更新日:<%= @schedule.updated_at.to_s(:date_jp) %></p>
+</div>
+
+<div>
+    <%= link_to edit_schedule_path(@schedule.id) do %>
+        <span class="button">編集</span>
+    <% end %>
+    <span>　</span>
+    <%= link_to schedule_path(@schedule.id), method: :delete,data: {confirm:"削除しますか？"} do %>
+        <span class="button">削除</span>
+    <% end %>
+</div>
+
+<div>
+    <ul>
+        <li><%= link_to "スケジュール一覧に戻る", :schedules %></li>
+    </ul>
+</div>

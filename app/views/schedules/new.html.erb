@@ -1,0 +1,48 @@
+<h3>スケジュール登録</h3>
+
+<% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<%= render "shared/error", obj: @schedule %>
+
+<%= form_with model: @schedule do |sc| %>
+    <table>
+        <tr>
+            <th><%= sc.label :title,"タイトル" %></th>
+            <td><%= sc.text_field :title %></td>
+        </tr>
+        <tr>
+            <th><%= sc.label :start,"開始日時" %></th>
+            <td><%= sc.datetime_select :start %></td>
+        </tr>
+        <tr>
+            <th><%= sc.label :end,"終了日時" %></th>
+            <td><%= sc.datetime_select :end %></td>
+        </tr>
+        <tr>
+            <th><%= sc.label :allday,"終日" %></th>
+            <td>
+                <%= sc.check_box :allday,{style: 'transform: scale(1.5);'}, "○", " " %>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <%= sc.label :contents,"内容" %> 
+                <p class="caution">  ※最大100文字まで</p>
+            </th>
+            <td>
+                <%= sc.text_area :contents, size:"40%" %>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <ul>
+            <li class="submit"><%= sc.submit "登録" %></li>
+            <li><%= link_to "スケジュール一覧に戻る", :schedules %></li>
+        </ul>
+    </div>
+<% end %>
+
+
