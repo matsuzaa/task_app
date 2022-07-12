@@ -1,0 +1,47 @@
+<h3>スケジュール一覧</h3>
+
+<% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table>
+    <thead>
+        <tr>
+            <th class="wid1">id</th>
+            <th class="wid4">タイトル</th>
+            <th class="wid3">開始</th>
+            <th class="wid3">終了</th>
+            <th class="wid1">終日</th>
+            <th class="wid3">更新日</th>
+            <th class="wid2">確認</th>
+            <th class="wid2">編集</th>
+            <th class="wid2">削除</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @schedules.each do |sc| %>
+            <tr>
+                <td>
+                    <%= sc.id %> 
+                </td>
+                <td><%= link_to sc.title, schedule_path(sc.id) %></td>
+                <td><%= sc.start.to_s(:datetime_jp) %></td>
+                <td><%= sc.end.to_s(:datetime_jp) %></td>
+                <td><%= sc.allday %></td>
+                <td><%= sc.updated_at.to_s(:date_jp) %></td>
+                <td>
+                    <%= link_to "確認", schedule_path(sc.id) %>
+                </td>
+                <td>
+                    <%= link_to "編集", edit_schedule_path(sc.id) %>
+                </td>
+                <td>
+                    <%= link_to "削除", schedule_path(sc.id), method: :delete, data: { confirm:"削除しますか？" } %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<p class="new"><%= link_to "スケジュール新規登録", :new_schedule %></p>

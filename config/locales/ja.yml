@@ -1,0 +1,12 @@
+ja:
+ activerecord:
+  models:
+   schedule: スケジュール
+  attributes:
+   schedule:
+    title: タイトル
+    start: 開始日時
+    end: 終了日時
+    allday: 終日
+    contents: 内容
+
